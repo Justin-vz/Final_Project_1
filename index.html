@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Fun Zone! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-tertiary {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .emoji-shower {
+            position: fixed;
+            font-size: 3rem;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .stat-box {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            margin: 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .fun-fact {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px 35px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.1rem;
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border-left: 5px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .color-box {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 5px;
+            vertical-align: middle;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .color-box:hover {
+            transform: scale(1.2);
+        }
+
+        .counter {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #secretMessage {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 20px;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌈 Welcome to Fun Zone! 🎉</h1>
+        <p class="subtitle">Click around and have some fun!</p>
+        
+        <div class="button-group">
+            <button class="btn-primary" onclick="changeBackground()">🎨 Change Vibes</button>
+            <button class="btn-secondary" onclick="createEmojiRain()">🌧️ Emoji Rain</button>
+            <button class="btn-tertiary" onclick="playSound()">🎵 Make Noise</button>
+        </div>
+
+        <div style="margin: 30px 0;">
+            <div class="stat-box" onclick="incrementClicks()">
+                Clicks: <span class="counter" id="clickCount">0</span>
+            </div>
+            <div class="stat-box" onclick="changeText()">
+                Random: <span id="randomText">Click me!</span>
+            </div>
+        </div>
+
+        <div class="fun-fact" id="factBox">
+            💡 Fun Fact: A group of flamingos is called a "flamboyance"!
+        </div>
+
+        <div style="margin-top: 40px;">
+            <p style="font-size: 1.2rem; color: white; gap: 10px; display: flex; justify-content: center; flex-wrap: wrap;">
+                <span class="color-box" id="color1"></span>
+                <span class="color-box" id="color2"></span>
+                <span class="color-box" id="color3"></span>
+                <span class="color-box" id="color4"></span>
+                <span class="color-box" id="color5"></span>
+            </p>
+        </div>
+    </div>
+
+    <div id="secretMessage" class="hidden">🎉 You found the secret!</div>
+
+    <script>
+        let clickCount = 0;
+        let backgroundColors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ee7752', '#e73c7e', '#23a6d5', '#23d5ab'];
+        let facts = [
+            '💡 A group of flamingos is called a "flamboyance"!',
+            '🐙 Octopuses have three hearts!',
+            '🍌 Bananas are berries but strawberries are not!',
+            '🦰 Red hair is the rarest hair color!',
+            '🐢 Turtles have been around since dinosaurs!',
+            '🌟 Honey never spoils!',
+            '🍯 Peanuts are not nuts, they\'re legumes!',
+            '✨ Your brain uses 20% of your body\'s energy!',
+            '🎮 The first video game was created in 1958!',
+            '🌍 Venus rotates backwards compared to other planets!'
+        ];
+
+        function changeBackground() {
+            const colors = backgroundColors.sort(() => Math.random() - 0.5).slice(0, 4);
+            document.body.style.background = `linear-gradient(-45deg, ${colors.join(', ')})`;
+            document.body.style.backgroundSize = '400% 400%';
+            document.body.animation = 'none';
+            setTimeout(() => {
+                document.body.animation = 'gradientShift 15s ease infinite';
+            }, 10);
+            updateColorBoxes();
+        }
+
+        function createEmojiRain() {
+            const emojis = ['🎉', '🎊', '✨', '🌟', '💫', '🎈', '🎁', '🎯', '🏆', '⭐', '🌈', '💖', '🚀', '🎪', '🎭'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji-shower';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * window.innerWidth + 'px';
+                    emoji.style.top = '-50px';
+                    emoji.style.animation = 'fall ' + (2 + Math.random() * 1) + 's linear forwards';
+                    document.body.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 50);
+            }
+        }
+
+        function playSound() {
+            // Create a fun beeping sound using Web Audio API
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const notes = [261.63, 293.66, 329.63, 349.23, 392.00]; // C, D, E, F, G
+            
+            notes.forEach((freq, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = freq;
+                oscillator.type = 'sine';
+                
+                const startTime = audioContext.currentTime + (index * 0.1);
+                gainNode.gain.setValueAtTime(0.3, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.1);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.1);
+            });
+        }
+
+        function incrementClicks() {
+            clickCount++;
+            document.getElementById('clickCount').textContent = clickCount;
+            
+            if (clickCount % 10 === 0) {
+                createEmojiRain();
+            }
+            
+            if (clickCount === 50) {
+                showSecretMessage();
+            }
+        }
+
+        function changeText() {
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            document.getElementById('factBox').textContent = randomFact;
+        }
+
+        function updateColorBoxes() {
+            for (let i = 1; i <= 5; i++) {
+                const randomColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+                document.getElementById('color' + i).style.backgroundColor = randomColor;
+            }
+        }
+
+        function showSecretMessage() {
+            const secret = document.getElementById('secretMessage');
+            secret.classList.remove('hidden');
+            setTimeout(() => {
+                secret.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Create floating particles on load
+        function createParticles() {
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.width = particle.style.height = (Math.random() * 20 + 5) + 'px';
+                particle.style.backgroundColor = backgroundColors[Math.floor(Math.random() * backgroundColors.length)];
+                particle.style.animationDelay = (Math.random() * 20) + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createParticles();
+            updateColorBoxes();
+            changeText();
+        });
+
+        // Add some keyboard fun
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                e.preventDefault();
+                createEmojiRain();
+            }
+        });
+
+        // Easter egg - Double click anywhere
+        document.addEventListener('dblclick', () => {
+            changeBackground();
+            createEmojiRain();
+            playSound();
+        });
+    </script>
+</body>
+</html>
